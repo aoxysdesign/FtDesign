@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Démarrer un projet - NexGen</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">FtDesign</div>
+        <div class="links">
+            <a href="index.html">Accueil</a>
+        </div>
+    </nav>
+
+    <section class="contact-page-section reveal">
+        <div class="contact-header">
+            <h1 class="gradient-text">Parlons de votre futur.</h1>
+            <p>Remplissez ce formulaire pour que nous puissions préparer une solution adaptée à vos besoins.</p>
+        </div>
+
+        <div class="form-wrapper">
+            <form action="https://formspree.io/f/xvzgjyen" method="POST" class="modern-form">
+                
+                <div class="input-group">
+                    <div class="input-box">
+                        <label>Prénom & Nom</label>
+                        <input type="text" name="name" placeholder="Jean Dupont" required>
+                    </div>
+                    <div class="input-box">
+                        <label>Email professionnel</label>
+                        <input type="email" name="email" placeholder="jean@societe.com" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-box">
+                        <label>Nom de l'entreprise</label>
+                        <input type="text" name="company" placeholder="Votre Société">
+                    </div>
+                    <div class="input-box">
+                        <label>Site web actuel (optionnel)</label>
+                        <input type="url" name="website" placeholder="https://...">
+                    </div>
+                </div>
+
+                <div class="input-box">
+                    <label>Quel service vous intéresse ?</label>
+                    <select name="service" required>
+                        <option value="" disabled selected>Choisir une option...</option>
+                        <option value="site-web">Création de Site Web IA</option>
+                        <option value="powerpoint">Présentation PowerPoint IA</option>
+                        <option value="autre">Autre / Sur-mesure</option>
+                    </select>
+                </div>
+
+                <div class="input-box">
+                    <label>Budget estimé</label>
+                    <select name="budget">
+                        <option value="standard">Petit budget (< 500€)</option>
+                        <option value="pro">Moyen (500€ - 1500€)</option>
+                        <option value="empire">Grand compte (+ 1500€)</option>
+                    </select>
+                </div>
+
+                <div class="input-box">
+                    <label>Détails du projet</label>
+                    <textarea name="message" rows="5" placeholder="Décrivez votre besoin, vos objectifs et vos délais..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary btn-full">Envoyer la demande</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 FtDesign. Confidentialité garantie.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

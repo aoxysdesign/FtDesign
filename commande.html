@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finaliser la commande - FtDesign</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body { background: #050505; color: white; font-family: 'Inter', sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 20px; margin: 0; }
+        .order-container { background: #111; padding: 40px; border-radius: 20px; border: 1px solid #333; max-width: 500px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+        input, textarea { width: 100%; background: #222; border: 1px solid #333; color: white; padding: 15px; border-radius: 8px; margin-bottom: 20px; outline: none; box-sizing: border-box; }
+        input:focus, textarea:focus { border-color: #a855f7; }
+        
+        /* STYLE DES PACKS */
+        .pack-selector { display: flex; gap: 10px; margin-bottom: 20px; }
+        .pack-option {
+            flex: 1; border: 1px solid #333; border-radius: 10px; padding: 15px; cursor: pointer;
+            text-align: center; transition: 0.3s; background: #1a1a1a; opacity: 0.7;
+        }
+        .pack-option.active {
+            border-color: #a855f7; background: rgba(168, 85, 247, 0.1); opacity: 1; transform: scale(1.02);
+        }
+        .pack-title { font-weight: bold; display: block; margin-bottom: 5px; }
+        .pack-price { color: #a855f7; font-weight: 900; }
+    </style>
+</head>
+<body>
+
+    <div class="order-container">
+        
+        <div style="text-align: center; margin-bottom: 30px;">
+            <h1 style="margin: 0; font-size: 1.8rem;">Votre Futur Site</h1>
+            <p style="color: #666; font-size: 0.9rem; margin-top: 10px;">Configurez votre offre ci-dessous.</p>
+        </div>
+
+        <form action="https://formsubmit.co/laissoukilyan@gmail.com" method="POST">
+            
+            <input type="hidden" id="stripe-link" name="_next" value="https://buy.stripe.com/test_eVqdR23Lj6iB2JxflO7g404">
+            
+            <input type="hidden" name="_subject" value="Nouvelle Commande Site Web !">
+            <input type="hidden" name="_captcha" value="false">
+            
+            <input type="hidden" id="selected-pack-name" name="Pack_Choisi" value="STARTER (150€)">
+
+            <label style="display: block; color: #aaa; font-size: 0.8rem; margin-bottom: 10px;">Choisissez votre niveau de finition :</label>
+            <div class="pack-selector">
+                <div class="pack-option active" onclick="selectPack('starter')">
+                    <span class="pack-title">🚀 Starter</span>
+                    <span class="pack-price">150€</span>
+                    <div style="font-size: 0.7rem; color: #888; margin-top: 5px;">Site Vitrine IA Rapide</div>
+                </div>
+                
+                <div class="pack-option" onclick="selectPack('pro')">
+                    <span class="pack-title">💎 Pro</span>
+                    <span class="pack-price">300€</span>
+                    <div style="font-size: 0.7rem; color: #888; margin-top: 5px;">Sur-mesure & Complet</div>
+                </div>
+            </div>
+
+            <label style="display: block; color: #aaa; font-size: 0.8rem; margin-bottom: 5px;">Projet détecté :</label>
+            <input type="text" id="projet-input" name="Projet" readonly 
+            style="background: #1a1a1a; border: 1px solid #a855f7; color: #a855f7; font-weight: bold;">
+
+            <label style="display: block; color: #aaa; font-size: 0.8rem; margin-bottom: 5px;">Votre Email :</label>
+            <input type="email" name="email" required placeholder="contact@votre-entreprise.com">
+
+            <label style="display: block; color: #aaa; font-size: 0.8rem; margin-bottom: 5px;">Détails (Couleurs, envies...) :</label>
+            <textarea name="message" placeholder="Dites-moi tout..."></textarea>
+
+            <button type="submit" id="pay-btn" style="width: 100%; background: linear-gradient(45deg, #a855f7, #7c3aed); color: white; border: none; padding: 15px; border-radius: 50px; font-weight: bold; font-size: 1.1rem; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 20px rgba(168, 85, 247, 0.4);">
+                Valider le Pack Starter (150€)
+            </button>
+            
+            <p style="text-align: center; font-size: 0.75rem; color: #555; margin-top: 15px;">
+                Paiement sécurisé via Stripe.
+            </p>
+        </form>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="index.html" style="color: #666; text-decoration: none; font-size: 0.8rem;">Retour à l'accueil</a>
+        </div>
+    </div>
+
+    <script>
+        // 1. Récupération du projet
+        const savedProject = localStorage.getItem('ft_projet');
+        document.getElementById('projet-input').value = savedProject ? savedProject : "Site Web Personnalisé";
+
+        // 2. CONFIGURATION DES LIENS STRIPE (REMPLIS ICI AUSSI !)
+        const linkStarter = "https://buy.stripe.com/eVq7sM1yOgYLelE76hdby02"; 
+        const linkPro = "https://buy.stripe.com/00w5kE1yO9wj2CWcqBdby01";
+
+        // 3. Fonction pour changer de pack
+        function selectPack(pack) {
+            const options = document.querySelectorAll('.pack-option');
+            const stripeInput = document.getElementById('stripe-link');
+            const btn = document.getElementById('pay-btn');
+            const hiddenPackName = document.getElementById('selected-pack-name');
+
+            // Reset visuel
+            options.forEach(opt => opt.classList.remove('active'));
+
+            if (pack === 'starter') {
+                options[0].classList.add('active');
+                stripeInput.value = linkStarter; // https://buy.stripe.com/test_eVqdR23Lj6iB2JxflO7g404
+                hiddenPackName.value = "STARTER (150€)";
+                btn.innerHTML = "Valider le Pack Starter (150€)";
+            } else {
+                options[1].classList.add('active');
+                stripeInput.value = linkPro; // https://buy.stripe.com/test_cNiaEQ3LjdL3esf4Ha7g405
+                hiddenPackName.value = "PRO (300€)";
+                btn.innerHTML = "Valider le Pack Pro (300€) ✨";
+            }
+        }
+    </script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. On regarde si l'URL contient ?projet=...
+        const params = new URLSearchParams(window.location.search);
+        const projetRecu = params.get('projet');
+
+        // 2. Si oui, on remplit ton champ "Projet détecté"
+        if (projetRecu) {
+            // On cible ton champ qui est à la ligne 62 (id="projet-input")
+            const inputField = document.getElementById('projet-input');
+            
+            if (inputField) {
+                inputField.value = projetRecu; // On écrit le texte
+                
+                // Petit bonus visuel : on le met en surbrillance violette
+                inputField.style.borderColor = "#a855f7"; 
+                inputField.style.boxShadow = "0 0 10px rgba(168, 85, 247, 0.3)";
+            }
+        }
+    });
+</script>
+</body>
+</html>

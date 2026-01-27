@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Agency Builder Pack - Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- CONFIGURATION A4 --- */
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background: #050505; /* Fond noir site */
+            color: #e0e0e0;
+            -webkit-print-color-adjust: exact; /* Force l'impression des couleurs de fond */
+        }
+
+        /* --- DESIGN DES PAGES --- */
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm;
+            box-sizing: border-box;
+            background: #050505;
+            position: relative;
+            page-break-after: always; /* Force une nouvelle page à chaque fois */
+            border-bottom: 1px solid #333; /* Juste pour voir la limite à l'écran */
+        }
+
+        /* --- TYPOGRAPHIE --- */
+        h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(to right, #fff, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        h2 {
+            color: #a855f7; /* Violet FtDesign */
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            margin-top: 30px;
+            font-size: 1.8rem;
+        }
+        h3 {
+            color: #fff;
+            margin-top: 25px;
+            font-size: 1.3rem;
+        }
+        p, li {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #ccc;
+        }
+        strong {
+            color: #fff;
+        }
+
+        /* --- BOITES DE PROMPTS (Style Code) --- */
+        .prompt-box {
+            background: #111;
+            border: 1px solid #a855f7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            color: #d4d4d4;
+            position: relative;
+        }
+        .prompt-box::before {
+            content: "🤖 PROMPT GEMINI";
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: #a855f7;
+            color: white;
+            padding: 2px 10px;
+            font-size: 12px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        /* --- COUVERTURE --- */
+        .cover {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 297mm;
+        }
+        .cover h1 { font-size: 4rem; }
+        .cover h2 { border: none; font-size: 1.5rem; color: #888; margin-top: 0;}
+        .logo-box {
+            width: 100px; height: 100px;
+            background: #a855f7;
+            border-radius: 50%;
+            margin-bottom: 30px;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; font-size: 2rem; color: white;
+        }
+        
+        .footer {
+            position: absolute;
+            bottom: 20mm;
+            left: 0; right: 0;
+            text-align: center;
+            font-size: 12px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page cover">
+        <div class="logo-box">Ft</div>
+        <h1>AGENCY BUILDER</h1>
+        <h2>Le Pack Ultime pour créer des sites avec l'IA</h2>
+        
+        <div style="margin-top: 50px; padding: 20px; border: 1px dashed #333;">
+            <p><strong>VERSION GEMINI + VS CODE</strong></p>
+            <p>Générez des revenus passifs et actifs sans coder.</p>
+        </div>
+        
+        <div class="footer">© 2026 FtDesign Agency • Document Confidentiel</div>
+    </div>
+
+    <div class="page">
+        <h2>Bienvenue dans le futur</h2>
+        <p>Félicitations. En acquérant ce pack, vous avez décidé d'arrêter de coder à la main et de commencer à construire intelligemment[cite: 2].</p>
+        <p>Ce guide ne contient pas de théorie inutile. Il contient la méthode exacte que j'utilise pour livrer des sites clients en moins de 24h grâce à l'intelligence artificielle de Google[cite: 3].</p>
+        
+        <h3>🛠️ Votre boîte à outils</h3>
+        <ul>
+            <li><strong>Google Gemini</strong> (Version gratuite ou Advanced) [cite: 5]</li>
+            <li><strong>VS Code</strong> (Éditeur de code gratuit) [cite: 6]</li>
+            <li><strong>Netlify</strong> (Hébergement gratuit) [cite: 7]</li>
+        </ul>
+
+        <h2>Chapitre 1 : La Structure (HTML)</h2>
+        <p>L'erreur n°1 est de demander "Fais-moi un site" sans précision[cite: 10]. Utilisez ce prompt précis pour l'architecte.</p>
+
+        <div class="prompt-box">
+            "Agis comme un développeur web Senior expert en HTML5.<br>
+            Je veux créer un site One-Page moderne pour [TYPE D'ACTIVITÉ].<br><br>
+            1. Crée uniquement la structure HTML (pas de CSS).<br>
+            2. Utilise des balises sémantiques.<br>
+            3. Intègre la librairie 'ScrollReveal' via CDN.<br>
+            4. Le code doit être propre et commenté." [cite: 13, 14, 15, 17, 18]
+        </div>
+    </div>
+
+    <div class="page">
+        <h2>Chapitre 2 : Le Design (CSS)</h2>
+        <p>C'est ici que la magie opère. Pour ne pas avoir un site basique, il faut imposer un style artistique fort à Gemini[cite: 20].</p>
+
+        <div class="prompt-box">
+            "Maintenant, agis comme un UI/UX Designer primé.<br>
+            Génère le fichier style.css pour le HTML ci-dessus.<br><br>
+            <strong>Directives :</strong><br>
+            - Palette : Fond noir profond #050505, Accents violets.<br>
+            - Style : Dark Mode, Moderne, Glassmorphism.<br>
+            - Ajoute des effets de survol (hover) sur tous les boutons.<br>
+            - Rends le site 100% Responsive." [cite: 22, 25, 27, 30, 31]
+        </div>
+
+        <h2>Chapitre 3 : Finitions & Scripts</h2>
+        <p>Un site pro se joue dans les détails (animations, menu mobile)[cite: 34].</p>
+        
+        <div class="prompt-box">
+            "Génère un fichier script.js simple pour gérer :<br>
+            1. Le menu burger sur mobile.<br>
+            2. L'animation d'apparition des éléments au scroll (ScrollReveal)." [cite: 36, 37, 38]
+        </div>
+    </div>
+
+    <div class="page">
+        <h2>Chapitre 4 : La Méthode Debug</h2>
+        <p>La force de Gemini, c'est qu'il voit. Si votre site a un bug visuel :</p>
+        <ol>
+            <li>Faites une capture d'écran (Win + Maj + S)[cite: 43].</li>
+            <li>Collez-la dans Gemini (Ctrl + V)[cite: 43].</li>
+            <li>Demandez : <em>"Regarde l'image. Le bouton n'est pas centré. Corrige mon CSS."</em> [cite: 45]</li>
+        </ol>
+
+        <h2>Chapitre 5 : Vendre vos services</h2>
+        <div style="background: #1a1a1a; padding: 20px; border-left: 4px solid #a855f7;">
+            <h3>🎯 La Stratégie Sniper</h3>
+            <p>1. Ouvrez Google Maps et cherchez les artisans sans site web[cite: 55, 58].</p>
+            <p>2. Créez une démo rapide avec Gemini AVANT de les contacter[cite: 60].</p>
+            <p>3. Envoyez le lien : "J'ai créé une maquette pour vous, voulez-vous voir ?" [cite: 61]</p>
+            <p><strong>Prix conseillé : 500€ à 900€ le site vitrine.</strong> [cite: 65]</p>
+        </div>
+
+        <h3>💸 Revenus Passifs</h3>
+        <p>Utilisez <strong>Gumroad</strong> pour vendre vos propres guides ou prompts, exactement comme celui-ci[cite: 74].</p>
+
+        <div class="footer">AGENCY BUILDER PACK • Fin du document</div>
+    </div>
+
+</body>
+</html>
