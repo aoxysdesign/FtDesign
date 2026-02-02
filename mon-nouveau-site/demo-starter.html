@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DÉMO STARTER - FtDesign</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- STYLES CORRIGÉS --- */
+        body { padding-top: 60px; background-color: #000; color: #fff; }
+        
+        /* BANDEAU VENTE */
+        .top-banner {
+            background: #a855f7; color: white; text-align: center; padding: 12px;
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 10000;
+            font-family: 'Inter', sans-serif; box-shadow: 0 5px 20px rgba(168, 85, 247, 0.4);
+        }
+        .top-banner a { color: white; font-weight: 800; text-decoration: underline; margin: 0 5px; }
+        .top-banner a.btn-small { 
+            background: white; color: black; text-decoration: none; 
+            padding: 2px 8px; border-radius: 4px; 
+        }
+
+        /* NAV */
+        nav {
+            position: sticky; top: 45px; z-index: 9000;
+            background: rgba(5,5,5,0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid #222; display: flex; justify-content: space-between; align-items: center; padding: 15px 5%;
+        }
+        .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; }
+        .nav-links a { color: #ccc; text-decoration: none; margin-left: 20px; font-size: 0.9rem; }
+        .btn-primary { background: #a855f7; color: white; padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; }
+
+        /* HERO AVEC IMAGE MAGIQUE */
+        .demo-hero {
+            /* Image de bureau/tech aléatoire */
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7), #050505), url('https://loremflickr.com/1920/1080/computer,work/all');
+            background-size: cover; background-position: center;
+            min-height: 85vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px;
+        }
+
+        /* PORTFOLIO GRID */
+        .portfolio-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px; padding: 20px; max-width: 1200px; margin: 0 auto;
+        }
+        .portfolio-item {
+            background: #111; border-radius: 15px; overflow: hidden; border: 1px solid #222; position: relative;
+        }
+        .portfolio-img {
+            height: 220px; width: 100%; object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .portfolio-item:hover .portfolio-img { transform: scale(1.05); }
+        .portfolio-tag {
+            position: absolute; top: 10px; right: 10px;
+            background: #a855f7; color: white; padding: 5px 10px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; z-index: 10;
+        }
+
+        /* PROCESS STEPS */
+        .process-step {
+            display: flex; align-items: flex-start; gap: 20px;
+            background: #0f0f0f; padding: 30px; border-radius: 15px; margin-bottom: 20px; border-left: 4px solid #333;
+        }
+        .step-number { font-size: 3rem; font-weight: 800; color: #333; line-height: 1; }
+        .gradient-text { background: linear-gradient(to right, #fff, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body>
+
+    <div class="top-banner">
+        🚧 CECI EST UNE DÉMO. 
+        <a href="commande.html">Je veux ce site (150€)</a> OU 
+        <a href="services/prompts.html" class="btn-small">Je le fais moi-même (19€)</a>
+    </div>
+
+    <nav>
+        <div class="logo">FT DÉMO</div>
+        <div class="nav-links">
+            <a href="#process">Méthode</a>
+            <a href="#portfolio">Exemples</a>
+            <a href="commande.html" class="btn-primary">Commander</a>
+        </div>
+    </nav>
+
+    <header class="demo-hero">
+        <div style="max-width: 800px;">
+            <h1 style="font-size: 3.5rem; line-height: 1.2; margin-bottom: 20px;">Le Web Design <span class="gradient-text">Intelligent</span></h1>
+            <p style="font-size: 1.2rem; color: #ddd; margin-bottom: 40px;">
+                Fini les sites lents et moches. Voici la nouvelle génération de sites vitrines : propulsés par l'IA, codés pour la performance.
+            </p>
+            <a href="commande.html" class="btn-primary" style="padding: 15px 40px; font-size: 1.1rem;">Obtenir mon site (150€)</a>
+        </div>
+    </header>
+
+    <section id="process" style="padding: 80px 20px; max-width: 900px; margin: 0 auto;">
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 50px;">Notre Secret ? <span class="gradient-text">La Vitesse</span></h2>
+        
+        <div class="process-step">
+            <div class="step-number">01</div>
+            <div>
+                <h3 style="color: white; margin-bottom: 10px;">Structure Optimisée</h3>
+                <p style="color: #ccc;">Pas de Wordpress lourd. Juste du code pur généré par Gemini pour que Google vous place en tête.</p>
+            </div>
+        </div>
+        <div class="process-step">
+            <div class="step-number">02</div>
+            <div>
+                <h3 style="color: white; margin-bottom: 10px;">Design Universel</h3>
+                <p style="color: #ccc;">Regardez ci-dessous : notre structure s'adapte à n'importe quel métier.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" style="padding: 80px 20px; background: #0a0a0a;">
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 20px;">Un Modèle, <span class="gradient-text">Infinies Possibilités</span></h2>
+        <p style="text-align: center; color: #888; margin-bottom: 60px;">Les images ci-dessous sont générées automatiquement pour vous montrer le potentiel.</p>
+        
+        <div class="portfolio-grid">
+            
+            <div class="portfolio-item">
+                <div class="portfolio-tag">Automobile</div>
+                <img src="https://loremflickr.com/800/600/sportscar/all" class="portfolio-img" alt="Voiture">
+                <div style="padding: 20px;">
+                    <h4 style="color: white; margin-bottom: 5px;">Concessionnaire</h4>
+                    <p style="font-size: 0.8rem; color: #aaa;">Idéal pour afficher votre stock.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-tag">Artisanat</div>
+                <img src="https://loremflickr.com/800/600/flower,bouquet/all" class="portfolio-img" alt="Fleurs">
+                <div style="padding: 20px;">
+                    <h4 style="color: white; margin-bottom: 5px;">Fleuriste</h4>
+                    <p style="font-size: 0.8rem; color: #aaa;">Des couleurs qui éclatent sur fond noir.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-tag">Immobilier</div>
+                <img src="https://loremflickr.com/800/600/luxury,house/all" class="portfolio-img" alt="Maison">
+                <div style="padding: 20px;">
+                    <h4 style="color: white; margin-bottom: 5px;">Agence Immo</h4>
+                    <p style="font-size: 0.8rem; color: #aaa;">Faites visiter le rêve.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-tag">Resto</div>
+                <img src="https://loremflickr.com/800/600/food,restaurant/all" class="portfolio-img" alt="Resto">
+                <div style="padding: 20px;">
+                    <h4 style="color: white; margin-bottom: 5px;">Restaurant</h4>
+                    <p style="font-size: 0.8rem; color: #aaa;">Le menu accessible en 1 clic.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section style="background: linear-gradient(45deg, #a855f7, #7c3aed); padding: 80px 20px; text-align: center;">
+        <h2 style="color: white; margin-bottom: 30px;">Votre site pro est prêt.</h2>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+            <a href="commande.html" style="background: white; color: #7c3aed; padding: 15px 40px; border-radius: 50px; font-weight: 800; text-decoration: none;">Commander (150€)</a>
+            <a href="services/prompts.html" style="border: 2px solid rgba(255,255,255,0.5); color: white; padding: 15px 40px; border-radius: 50px; font-weight: 600; text-decoration: none;">Kit DIY (19€)</a>
+        </div>
+    </section>
+
+</body>
+</html>

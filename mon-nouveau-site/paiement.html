@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paiement Sécurisé - NexGen</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/logo.png" alt="Logo FtDesign" class="logo-img">
+            </a>
+        </div>
+        <div class="links">
+            <a href="commande.html">Annuler et retour</a>
+        </div>
+    </nav>
+
+    <section class="payment-section reveal">
+        <div class="payment-card">
+            <h1 class="gradient-text">Récapitulatif</h1>
+            
+            <div id="order-summary" class="summary-box">
+                <h2 id="plan-name">Chargement...</h2>
+                <p class="price-display"><span id="plan-price">0</span>€</p>
+                <p class="description">Paiement unique pour la création de votre projet.</p>
+            </div>
+
+            <div class="payment-methods">
+                <p style="margin-bottom: 20px; color:#aaa;">Choisissez votre mode de paiement sécurisé :</p>
+                
+                <a href="https://stripe.com" target="_blank" class="btn-primary btn-full pay-btn">
+                    💳 Payer par Carte Bancaire
+                </a>
+
+                <a href="https://paypal.com" target="_blank" class="btn-nav btn-full pay-btn" style="margin-top:15px;">
+                    🅿️ Payer avec PayPal
+                </a>
+            </div>
+
+            <p class="secure-note">🔒 Transaction chiffrée SSL. Vos données sont protégées.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 FtDesign. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // 1. On récupère le choix du client dans l'URL (starter ou pro)
+        const params = new URLSearchParams(window.location.search);
+        const plan = params.get('plan');
+
+        // 2. On sélectionne les éléments HTML à modifier
+        const planName = document.getElementById('plan-name');
+        const planPrice = document.getElementById('plan-price');
+        const stripeButton = document.querySelector('.pay-btn'); // Le bouton "Payer par Carte"
+
+        // --- ZONE DE CONFIGURATION ---
+        // Colle tes vrais liens Stripe ici entre les guillemets !
+        const lienStripeStarter = "https://buy.stripe.com/test_14A3co95D4atdobddG7g400";
+        const lienStripePro = "https://buy.stripe.com/test_dRm6oA1Db0YhfwjehK7g401";
+        // -----------------------------
+
+        // 3. On met à jour la page selon le plan
+        if (plan === 'starter') {
+            planName.innerText = "Pack Starter";
+            planPrice.innerText = "150";
+            stripeButton.href = lienStripeStarter; // On change le lien du bouton
+            
+        } else if (plan === 'pro') {
+            planName.innerText = "Pack Pro";
+            planPrice.innerText = "300";
+            stripeButton.href = lienStripePro; // On change le lien du bouton
+
+        } else {
+            // Si pas de plan choisi, on redirige vers l'accueil ou on affiche une erreur
+            planName.innerText = "Aucun pack sélectionné";
+            planPrice.innerText = "0";
+            stripeButton.style.display = "none"; // On cache le bouton
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

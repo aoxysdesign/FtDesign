@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexGen AI - Solutions Web & Présentations</title>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.ftdesign.agency/">
+    <meta property="og:title" content="FtDesign | Votre Site Web Pro généré par IA 🚀">
+    <meta property="og:description" content="Ne partez plus d'une page blanche. Générez l'architecture idéale de votre site en 30 secondes. Design Premium & Performance.">
+    
+    <meta property="og:image" content="https://www.ftdesign.agency/images/social-share.jpg">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="FtDesign | Votre Site Web Pro généré par IA 🚀">
+    <meta property="twitter:description" content="Ne partez plus d'une page blanche. Testez notre générateur IA maintenant.">
+    <meta property="twitter:image" content="https://ftdesign-agency.netlify.app/images/social-share.jpg">
+    <meta name="description" content="Agence FtDesign : Création de sites web ultra-rapides grâce à l'intelligence artificielle et design de présentations PowerPoint impactantes.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+<style>
+    /* 1. L'ÉCRAN NOIR & EFFET CRT (Vieux moniteur) */
+    #hacker-boot {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background-color: #050505;
+        z-index: 999999;
+        font-family: 'Courier New', monospace;
+        padding: 2rem;
+        box-sizing: border-box;
+        overflow: hidden;
+        color: #00ff41; /* Vert Matrix officiel */
+        text-shadow: 0 0 5px #00ff41;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    /* Effet ligne de balayage (Scanline) */
+    #hacker-boot::before {
+        content: " ";
+        display: block;
+        position: absolute;
+        top: 0; left: 0; bottom: 0; right: 0;
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+        z-index: 2;
+        background-size: 100% 2px, 3px 100%;
+        pointer-events: none;
+    }
+
+    /* Le texte */
+    .log-line {
+        margin: 2px 0;
+        font-size: 14px;
+        opacity: 0.9;
+        white-space: pre-wrap; /* Garde les espaces */
+    }
+    
+    .keyword { color: #facc15; font-weight: bold; } /* Jaune pour les mots clés */
+    .error { color: #ef4444; font-weight: bold; } /* Rouge pour erreur */
+    .success { color: #22d3ee; font-weight: bold; } /* Bleu cyan pour succès */
+
+    /* La grosse boîte "ACCESS GRANTED" */
+    #access-box {
+        display: none;
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        border: 2px solid #00ff41;
+        padding: 20px 40px;
+        background: black;
+        text-align: center;
+        box-shadow: 0 0 30px #00ff41;
+        z-index: 10;
+    }
+    #access-box h1 {
+        font-size: 3rem;
+        margin: 0;
+        letter-spacing: 5px;
+        animation: blink 0.3s infinite alternate;
+    }
+
+    @keyframes blink { from { opacity: 1; } to { opacity: 0.3; } }
+
+    /* Animation de sortie */
+    .shut-down {
+        animation: television-off 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    }
+    
+    @keyframes television-off {
+        0% { transform: scale(1, 1); opacity: 1; }
+        50% { transform: scale(1, 0.005); opacity: 1; }
+        100% { transform: scale(0, 0); opacity: 0; }
+    }
+</style>
+
+<div id="hacker-boot">
+    <div id="console-logs"></div>
+    <div id="access-box">
+        <h1>ACCESS GRANTED</h1>
+        <p>WELCOME TO FtDESIGN</p>
+    </div>
+</div>
+
+<script>
+    const consoleDiv = document.getElementById('console-logs');
+    const accessBox = document.getElementById('access-box');
+    const bootScreen = document.getElementById('hacker-boot');
+
+    // Le scénario du piratage
+    const sequence = [
+        { text: "Initializing kernel...", delay: 50 },
+        { text: "Loading modules: [====================] 100%", delay: 200 },
+        { text: "> Target found: www.ftdesign.agency", delay: 400 },
+        { text: "> Attempting handshake...", delay: 600 },
+        { text: "Error: Firewall detected (Port 443 blocked).", type: "error", delay: 800 },
+        { text: "> Rerouting through proxy 192.168.0.1...", delay: 1200 },
+        { text: "> Bypassing security protocol...", delay: 1500 },
+        { text: "Injecting payload: 'Ft_Design_v2.exe'", type: "keyword", delay: 2000 },
+        { text: "Decrypting user data...", delay: 2500 },
+        { text: "BRUTE_FORCE_MODE: ACTIVATED", type: "error", delay: 2800 },
+        { text: "HEX_DUMP_START", action: "hexdump", delay: 3000 },
+        { text: "> Authorization token accepted.", type: "success", delay: 5500 },
+        { text: "> System Unlocked.", type: "success", delay: 5800 },
+        { text: "Launching Interface...", delay: 6000 },
+        { text: "FINISH", action: "grantAccess", delay: 6500 }
+    ];
+
+    let step = 0;
+
+    function runSequence() {
+        if (step >= sequence.length) return;
+        const current = sequence[step];
+
+        setTimeout(() => {
+            if (current.action === "hexdump") startHexDump();
+            else if (current.action === "grantAccess") showAccessGranted();
+            else {
+                const p = document.createElement('div');
+                p.classList.add('log-line');
+                if (current.type) p.classList.add(current.type);
+                p.textContent = current.text;
+                consoleDiv.appendChild(p);
+                window.scrollTo(0, document.body.scrollHeight);
+            }
+            step++;
+            runSequence();
+        }, current.delay - (step > 0 ? sequence[step-1].delay : 0));
+    }
+
+    function startHexDump() {
+        const hexInterval = setInterval(() => {
+            const p = document.createElement('div');
+            p.style.color = "#0f0"; p.style.fontSize = "10px"; p.style.opacity = "0.7";
+            let randomHex = "";
+            for(let i=0; i<80; i++) randomHex += Math.floor(Math.random()*16).toString(16).toUpperCase() + " ";
+            p.textContent = randomHex;
+            consoleDiv.appendChild(p);
+            if(consoleDiv.children.length > 25) consoleDiv.removeChild(consoleDiv.firstChild);
+        }, 50);
+        setTimeout(() => { clearInterval(hexInterval); consoleDiv.innerHTML = ""; }, 2000);
+    }
+
+    function showAccessGranted() {
+        consoleDiv.style.display = 'none';
+        accessBox.style.display = 'block';
+        setTimeout(() => {
+            bootScreen.classList.add('shut-down');
+            setTimeout(() => {
+                bootScreen.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 700);
+        }, 1500);
+    }
+
+    // --- C'EST ICI QUE LA MAGIE OPÈRE ---
+    window.onload = () => {
+        // On vérifie si le visiteur a déjà vu l'intro dans cette session
+        if (sessionStorage.getItem('hackerIntroPlayed')) {
+            // OUI : On cache tout immédiatement !
+            bootScreen.style.display = 'none';
+        } else {
+            // NON : On lance l'animation et on note qu'il l'a vue
+            sessionStorage.setItem('hackerIntroPlayed', 'true');
+            document.body.style.overflow = 'hidden';
+            runSequence();
+        }
+    };
+</script>
+
+    <nav>
+
+
+        <div class="links">
+            <a href="#services">Services</a>
+           <a href="contact.html" class="btn-nav">Me contacter</a>
+        
+        </div>
+    </nav>
+        <header class="hero">
+    <div id="particles-js"></div> 
+        ...
+        <div class="hero-content reveal">
+           <h1>
+    Création de <span class="gradient-text">Site Internet IA</span> <br> 
+    et Présentations PowerPoint
+</h1>
+            <p>Agence en création de sites web ultra-rapides et présentations PowerPoint au design impactants. Ne perdez plus de temps, laissez l'intelligence artificielle sublimer votre contenu.</p>
+            <a href="contact.html" class="btn-primary">Démarrer un projet</a>
+        </div>
+    </header>
+<section class="video-section reveal">
+        <h2 style="text-align:center; margin-bottom: 40px;">Découvrez <span class="gradient-text">l'agence</span> en action</h2>
+        
+        <div class="video-container">
+          <video autoplay loop muted playsinline width="100%" style="border-radius: 15px;">
+    <source src="demo.mp4" type="video/mp4">
+    Votre navigateur ne supporte pas la vidéo.
+</video>
+        </div>
+    </section>
+
+<style>
+   /* DESIGN INTÉGRÉ (Mise à jour : Fond Montagne Sunset Flouté) */
+    .ai-wrapper {
+        padding: 80px 20px;
+        font-family: 'Inter', sans-serif;
+        text-align: center;
+        color: white;
+        border-bottom: 1px solid #1e293b;
+        
+        /* --- CONFIGURATION DU FOND --- */
+        position: relative;
+        overflow: hidden;
+        /* L'image de montagne au coucher de soleil */
+        background-image: url('https://images.unsplash.com/photo-1536244636800-a3f74db0f3cf?q=80&w=1920&auto=format&fit=crop');
+        background-size: cover;
+        background-position: center;
+        /* Effet "parallaxe" : l'image reste fixe quand on scrolle (très classe) */
+        background-attachment: fixed;
+    }
+
+    /* --- LA COUCHE DE FLOU ET DE COULEUR ROSE --- */
+    /* On crée un "faux" élément qui se pose sur l'image */
+    .ai-wrapper::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        /* Un dégradé : Rose/Violet en haut, sombre en bas pour la lisibilité */
+        background: linear-gradient(to bottom, rgba(219, 39, 119, 0.4), rgba(15, 23, 42, 0.95));
+        /* C'est cette ligne qui crée le flou magique */
+        backdrop-filter: blur(10px);
+        z-index: 0; /* Reste derrière le texte */
+    }
+
+    /* IMPORTANT : On force le contenu (texte, boutons) à passer DEVANT le fond flouté */
+    .ai-wrapper > * {
+        position: relative;
+        z-index: 1;
+    }
+
+    /* La Barre de Recherche */
+    .smart-input-box {
+        max-width: 700px;
+        margin: 40px auto;
+        background: #020617;
+        border: 1px solid #334155;
+        border-radius: 50px;
+        padding: 8px;
+        display: flex;
+        box-shadow: 0 0 30px rgba(168, 85, 247, 0.15);
+        transition: all 0.3s;
+    }
+
+    .smart-input-box:focus-within {
+        border-color: #a855f7;
+        box-shadow: 0 0 50px rgba(168, 85, 247, 0.3);
+    }
+
+    .smart-input-box input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        color: white;
+        padding: 15px 20px;
+        font-size: 1.1rem;
+        outline: none;
+    }
+
+    .btn-magic {
+        background: linear-gradient(135deg, #a855f7, #3b82f6);
+        color: white;
+        border: none;
+        padding: 12px 35px;
+        border-radius: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+    .btn-magic:hover { transform: scale(1.05); }
+
+    /* Les Tags Suggestions */
+    .tags-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+    }
+
+    .tag-pill {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid #334155;
+        color: #94a3b8;
+        padding: 8px 16px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: all 0.2s;
+    }
+    .tag-pill:hover {
+        border-color: #a855f7;
+        color: white;
+        background: rgba(168, 85, 247, 0.2);
+    }
+
+    /* Le Terminal (Caché au début) */
+    .terminal-ui {
+        display: none; /* Caché */
+        max-width: 650px;
+        margin: 40px auto;
+        background: #020617;
+        border-radius: 12px;
+        border: 1px solid #334155;
+        overflow: hidden;
+        font-family: monospace;
+        text-align: left;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    }
+
+    .terminal-head { background: #1e293b; padding: 10px 15px; color: #64748b; font-size: 0.8rem; }
+    .terminal-body { padding: 20px; height: 180px; overflow-y: auto; color: #22c55e; font-size: 0.9rem; }
+    
+    .loading-line { height: 4px; background: #1e293b; width: 100%; }
+    .loading-fill { height: 100%; width: 0%; background: #a855f7; transition: width 0.3s; }
+
+    /* Résultat (Caché au début) */
+    .result-ui {
+        display: none; /* Caché */
+        max-width: 600px;
+        margin: 40px auto;
+        background: #1e293b;
+        border: 1px solid #a855f7;
+        border-radius: 20px;
+        padding: 40px;
+        animation: slideUp 0.5s ease;
+    }
+    @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+</style>
+
+<section class="ai-wrapper">
+    <h2 class="ai-title"><span class="gradient-text">IA Architecte.</span> Votre site en 30 secondes.</h2>
+    <p style="color: #94a3b8; max-width: 600px; margin: 0 auto;">
+        Dites adieu à la page blanche. Décrivez votre activité et regardez notre IA construire la structure idéale.
+    </p>
+
+    <div id="view-form">
+        <div class="smart-input-box">
+            <input type="text" id="ai-prompt" placeholder="Ex: Plombier à Grenoble, urgence 24/7...">
+            <button class="btn-magic" onclick="runAI()">GÉNÉRER LE SITE</button>
+        </div>
+        
+        <div class="tags-container">
+            <span style="color:#64748b; padding-top:5px;">Essayer :</span>
+            <button class="tag-pill" onclick="typeText('Site vitrine pour Restaurant Italien chic avec réservation')">🍕 Restaurant</button>
+            <button class="tag-pill" onclick="typeText('Artisan Plombier chauffagiste, devis gratuit et photos')">🛠️ Artisan</button>
+            <button class="tag-pill" onclick="typeText('Coach sportif transformation physique, programmes en ligne')">💪 Coach</button>
+            
+        </div>
+        
+        <p style="margin-top: 30px; font-size: 0.75rem; color: #64748b; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.4;">
+    <i class="fas fa-shield-alt" style="margin-right: 5px;"></i> 
+    Ce prototype utilise une <strong>IA générative</strong> expérimentale. 
+    Des incohérences visuelles peuvent survenir. Le résultat final est toujours validé par un expert humain.
+</p>
+    </div>
+
+    <div id="view-terminal" class="terminal-ui">
+        <div class="terminal-head">🔴 LIVE SERVER: Leto_Core_v2.4 [Processing...]</div>
+        <div class="terminal-body" id="logs-area"></div>
+        <div class="loading-line"><div id="load-bar" class="loading-fill"></div></div>
+    </div>
+
+    <div id="view-result" class="result-ui">
+        <h3 style="font-size: 1.8rem; margin-bottom: 10px;">✨ Structure Générée !</h3>
+        <p style="color: #cbd5e1; margin-bottom: 25px;">
+            L'analyse est terminée. Nous avons généré une maquette optimisée pour : <br>
+            <strong id="final-topic" class="gradient-text" style="font-size: 1.2rem;"></strong>
+        </p>
+        <a href="commande.html" style="background: white; color: black; padding: 15px 30px; border-radius: 30px; text-decoration: none; font-weight: bold; display: inline-block;">
+            VOIR LE RÉSULTAT & PRIX
+        </a>
+    </div>
+
+</section>
+
+<script>
+    // Effet machine à écrire
+    function typeText(text) {
+        const input = document.getElementById('ai-prompt');
+        input.value = "";
+        let i = 0;
+        function typing() {
+            if(i < text.length) {
+                input.value += text.charAt(i);
+                i++;
+                setTimeout(typing, 25);
+            }
+        }
+        typing();
+        input.focus();
+    }
+
+    // Lancer la génération
+    function runAI() {
+        const prompt = document.getElementById('ai-prompt').value;
+        if(prompt.length < 5) { alert("Dites-m'en un peu plus !"); return; }
+
+        document.getElementById('view-form').style.display = 'none';
+        document.getElementById('view-terminal').style.display = 'block';
+
+        // Détection du thème
+        let theme = "Projet Web";
+        const p = prompt.toLowerCase();
+        if(p.includes('plomb') || p.includes('bâtiment') || p.includes('artisan')) theme = "Artisanat / BTP";
+        if(p.includes('restau') || p.includes('manger') || p.includes('pizza')) theme = "Restauration";
+        if(p.includes('sport') || p.includes('coach') || p.includes('fit')) theme = "Sport / Santé";
+        if(p.includes('boulang')) theme = "Boulangerie / Commerce";
+
+        const logs = document.getElementById('logs-area');
+        const bar = document.getElementById('load-bar');
+        const steps = [
+            "> Initialisation...", "> Analyse : " + prompt.substring(0, 15) + "...",
+            "> Thème : [" + theme + "]", "> Structure UX...", "> Code HTML5...", "> CSS...", "> Terminé."
+        ];
+
+        let delay = 0;
+        steps.forEach((msg, index) => {
+            delay += 600; 
+            setTimeout(() => {
+                logs.innerHTML += `<div>${msg}</div>`;
+                logs.scrollTop = logs.scrollHeight;
+                bar.style.width = ((index + 1) / steps.length) * 100 + "%";
+
+                if(index === steps.length - 1) {
+                    setTimeout(() => {
+                        document.getElementById('view-terminal').style.display = 'none';
+                        document.getElementById('view-result').style.display = 'block';
+                        document.getElementById('final-topic').innerText = theme;
+                        
+                        // --- LA LIGNE MAGIQUE ---
+                        // On sélectionne le lien et on lui ajoute le paramètre ?projet=...
+                        const btn = document.querySelector('#view-result a');
+                        btn.href = "commande.html?projet=" + encodeURIComponent(theme);
+                        
+                    }, 800);
+                }
+            }, delay);
+        });
+    }
+</script>
+
+    <section id="services" class="services">
+        <h2 class="reveal">Nos Expertises</h2>
+       <div class="cards-container">
+            
+            <a href="services/web.html" class="card reveal">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop" alt="Web Design">
+                </div>
+                <div class="card-content">
+                    <h3>Site Web IA</h3>
+                    <p>Du site vitrine au portfolio. Nous générons une structure optimisée, un design moderne et un code propre.</p>
+                    <ul>
+                        <li>✨ Design adaptatif (Mobile/PC)</li>
+                        <li>🚀 Optimisation SEO par IA</li>
+                        <li>⚡ Mise en ligne rapide</li>
+                    </ul>
+                </div>
+            </a>
+
+            <a href="services/ppt.html" class="card reveal">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=800&auto=format&fit=crop" alt="Presentation">
+                </div>
+                <div class="card-content">
+                    <h3>Présentations Powerpoint</h3>
+                    <p>Fini les slides vides. Nous structurons votre discours et générons des visuels captivants.</p>
+                    <ul>
+                        <li>🎨 Storytelling visuel</li>
+                        <li>📊 Graphiques automatiques</li>
+                        <li>🎯 Pitch deck percutant</li>
+                    </ul>
+                </div>
+            </a>
+<a href="services/prompts.html" class="card reveal">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1555421689-d68471e189f2?q=80&w=1920&auto=format&fit=crop" alt="Prompts IA">
+            </div>
+            <div class="card-content">
+                <h3>Kits de Prompts IA</h3>
+                <p>Devenez autonome. Nos guides et prompts pour créer vos propres sites sans coder.</p>
+                <ul>
+                    <li>🧠 Prompts optimisés (GPT-4)</li>
+                    <li>📘 Guide PDF complet</li>
+                    <li>⚡ Méthode "Zéro Code"</li>
+                </ul>
+            </div>
+        </a>
+
+    </div> </section>
+        </div>
+        
+        </div>
+    </section>
+<section id="portfolio" class="portfolio reveal">
+        <h2 style="text-align:center; margin-bottom:50px;">Nos dernières <span class="gradient-text">réalisations</span></h2>
+        
+        <div class="portfolio-container">
+            <div class="portfolio-card">
+                <div class="portfolio-image" style="background-image: url('images/projet1.jpg');"></div>
+                <div class="portfolio-content">
+                    <h3>Site Vitrine - FoodTruck</h3>
+                    <p>Design moderne et réservation en ligne.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="portfolio-image" style="background-image: url('images/projet2.jpg');"></div>
+                <div class="portfolio-content">
+                    <h3>Pitch Deck - Fintech</h3>
+                    <p>Présentation levée de fonds 2M€.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="portfolio-image" style="background-image: url('images/projet3.jpg');"></div>
+                <div class="portfolio-content">
+                    <h3>E-commerce - Mode</h3>
+                    <p>Boutique Shopify optimisée SEO.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact" class="contact reveal">
+        <div class="contact-box">
+            <h2>Prêt à innover ?</h2>
+            <p>Discutons de votre projet. Réponse sous 24h.</p>
+           <a href="contact.html" class="btn-primary">Démarrer un projet</a>
+        </div>
+    </section>
+<section class="testimonials reveal">
+        <h2 style="text-align:center; margin-bottom:50px;">Ils nous font confiance</h2>
+        
+        <div class="testimonials-container">
+            
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"Bluffant. J'ai reçu ma présentation PowerPoint en 24h et le design a impressionné mes investisseurs."</p>
+                <div class="client-info">
+                    <strong>Thomas D.</strong>
+                    <span>CEO, StartUp Flow</span>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"Je ne connaissais rien au code. FtDesign m'a livré un site clé en main, ultra rapide et optimisé."</p>
+                <div class="client-info">
+                    <strong>Sarah L.</strong>
+                    <span>Architecte d'intérieur</span>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">★★★★☆</div>
+                <p>"Service très pro. Le côté IA permet d'avoir des propositions de design uniques. Excellent rapport qualité/prix."</p>
+                <div class="client-info">
+                    <strong>Marc Rebillet</strong>
+                    <span>Freelance Marketing</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section class="faq-section reveal">
+        <h2 style="text-align:center; margin-bottom:50px;">Questions Fréquentes</h2>
+        
+        <div class="faq-container">
+            
+            <details class="faq-item">
+                <summary>Combien de temps pour recevoir mon site ?</summary>
+                <p>Pour le Pack Starter, nous livrons une première version en 72h ouvrées. Pour le Pack Pro, comptez environ 5 à 7 jours selon la complexité.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>Est-ce que je suis propriétaire du site ?</summary>
+                <p>Absolument. Une fois le paiement effectué et le site livré, vous êtes propriétaire à 100% de tous les fichiers et du design.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>Comment fonctionne la garantie satisfait ou remboursé ?</summary>
+                <p>Si la première maquette ne vous plaît pas, nous la retravaillons. Si après 3 révisions cela ne convient toujours pas, nous vous remboursons intégralement.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>Utilisez-vous uniquement l'IA ?</summary>
+                <p>Non. L'IA est un outil pour accélérer la création et trouver des idées, mais chaque projet est vérifié, corrigé et affiné par nos experts humains.</p>
+            </details>
+
+        </div>
+    </section>
+    <div style="padding: 80px 5%; background: #0a0a0a; color: white; border-top: 1px solid #222;">
+    <div style="text-align: center; max-width: 800px; margin: 0 auto 50px auto;">
+        <span style="color: #a855f7; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;">Espace Freelances & Agences</span>
+        <h2 style="font-size: 2.5rem; margin-top: 10px;">Lancez votre Business Web 🚀</h2>
+        <p style="color: #888;">Ne partez pas de zéro. Utilisez nos outils internes pour générer du cash rapidement.</p>
+    </div>
+
+    <div style="display: flex; gap: 30px; justify-content: center; flex-wrap: wrap;">
+        
+        <div style="background: #111; border: 1px solid #333; border-radius: 20px; padding: 40px; width: 100%; max-width: 400px; position: relative; overflow: hidden;">
+            <div style="position: absolute; top: 0; right: 0; background: #a855f7; color: white; font-weight: bold; padding: 5px 15px; border-bottom-left-radius: 20px; font-size: 0.8rem;">BEST SELLER</div>
+            
+            <h3 style="font-size: 1.8rem; margin-bottom: 10px;">WebStarter Pro</h3>
+            <p style="color: #aaa; font-size: 0.9rem; margin-bottom: 20px;">10 Templates Premium prêts à vendre.</p>
+            
+            <ul style="list-style: none; padding: 0; color: #ccc; line-height: 2; margin-bottom: 30px;">
+                <li>✅ <strong>10 Niches</strong> (Plombier, Resto, Immo...)</li>
+                <li>✅ Code HTML/CSS/JS Ultra-propre</li>
+                <li>✅ 100% Responsive & SEO Friendly</li>
+                <li>✅ Guide de revente inclus (PDF)</li>
+                <li>🎁 Bonus : Contrats & Palettes couleurs</li>
+            </ul>
+
+            <div style="font-size: 2rem; font-weight: 900; margin-bottom: 20px; color: white;">49€ <span style="font-size: 1rem; color: #666; text-decoration: line-through;">199€</span></div>
+
+            <a href="https://buy.stripe.com/14AbJ26T837V4L4duFdby05" style="display: block; width: 100%; background: white; color: black; text-align: center; padding: 15px; border-radius: 50px; font-weight: bold; text-decoration: none; transition: 0.3s;">
+                Télécharger le Pack 📦
+            </a>
+        </div>
+
+        <div style="background: #111; border: 1px solid #333; border-radius: 20px; padding: 40px; width: 100%; max-width: 400px;">
+            <h3 style="font-size: 1.8rem; margin-bottom: 10px;">Agency Builder</h3>
+            <p style="color: #aaa; font-size: 0.9rem; margin-bottom: 20px;">La méthode pour générer avec l'IA.</p>
+            
+            <ul style="list-style: none; padding: 0; color: #ccc; line-height: 2; margin-bottom: 30px;">
+                <li>✅ Guide PDF Complet</li>
+                <li>✅ Prompts ChatGPT Secrets</li>
+                <li>✅ Scripts de base</li>
+                <li>✅ Idéal pour débuter</li>
+            </ul>
+
+            <div style="font-size: 2rem; font-weight: 900; margin-bottom: 20px; color: white;">19€</div>
+
+            <a href="https://buy.stripe.com/4gM3cw2CS23R4L4eyJdby03" style="display: block; width: 100%; background: transparent; border: 1px solid #555; color: white; text-align: center; padding: 15px; border-radius: 50px; font-weight: bold; text-decoration: none; transition: 0.3s;">
+                Obtenir la méthode 📘
+            </a>
+        </div>
+
+    </div>
+</div>
+    <footer style="background-color: #020617; padding: 50px 20px; text-align: center; border-top: 1px solid #1e293b; margin-top: 50px;">
+    
+    <div class="container" style="max-width: 1000px; margin: 0 auto;">
+        
+        <div class="social-section" style="margin-bottom: 25px;">
+            <a href="https://www.instagram.com/ftdesign.agency?igsh=NTBlMWVveTJmenM4" target="_blank" style="text-decoration: none; display: inline-block; transition: transform 0.3s;">
+                <div style="background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); padding: 12px; border-radius: 50%; box-shadow: 0 4px 15px rgba(220, 39, 67, 0.4); display: flex; align-items: center; justify-content: center;">
+                    <img src="images/reseaux/instagram.png" alt="Instagram" style="width: 24px; height: 24px; display: block; filter: brightness(0) invert(1);">
+                </div>
+            </a>
+        </div>
+
+        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 25px;">
+            &copy; 2026 FtDesign. Tous droits réservés.
+        </p>
+
+        <div class="legal-links" style="border-top: 1px solid #1e293b; padding-top: 25px; display: flex; justify-content: center; gap: 30px;">
+            <a href="cgv.html" style="color: #94a3b8; text-decoration: none; font-size: 0.8rem; transition: color 0.3s;">Conditions Générales (CGV)</a>
+            <a href="mentions.html" style="color: #94a3b8; text-decoration: none; font-size: 0.8rem; transition: color 0.3s;">Mentions Légales</a>
+        </div>
+
+    </div>
+
+</footer>
+    <div id="advanced-builder" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #050505; z-index: 9999; flex-direction: column;">
+    
+    <button onclick="closeBuilder()" style="position: absolute; top: 20px; right: 20px; color: #666; background: none; border: none; font-size: 1.5rem; cursor: pointer;">✕</button>
+
+    <div id="builder-input-screen" style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; text-align: center;">
+        <h2 style="color: white; font-size: 2rem; margin-bottom: 20px;">Décrivez votre <span class="gradient-text">Site Idéal</span></h2>
+        <p style="color: #888; margin-bottom: 30px; max-width: 500px;">Soyez précis. Ex: "Je veux un site pour un photographe de mariage avec une ambiance sombre, luxueuse et minimaliste."</p>
+        
+        <textarea id="advanced-input" placeholder="Décrivez votre projet ici..." style="width: 100%; max-width: 600px; height: 150px; background: #111; border: 1px solid #333; color: white; padding: 20px; border-radius: 15px; resize: none; outline: none; font-family: 'Inter', sans-serif; margin-bottom: 20px;"></textarea>
+        
+        <button onclick="runAdvancedGeneration()" style="background: #a855f7; color: white; border: none; padding: 15px 40px; border-radius: 50px; font-weight: bold; font-size: 1.1rem; cursor: pointer; box-shadow: 0 10px 30px rgba(168, 85, 247, 0.3); transition: 0.3s;">
+            Lancer la Création IA 🚀
+        </button>
+    </div>
+
+    <div id="builder-loading" style="display: none; flex: 1; flex-direction: column; justify-content: center; align-items: center; background: black;">
+        <div id="builder-terminal" style="font-family: 'Courier New', monospace; color: #a855f7; font-size: 1rem; text-align: left; width: 300px;"></div>
+    </div>
+
+    <div id="builder-result" style="display: none; width: 100%; height: 100%; overflow-y: scroll; background: white; position: relative;">
+        
+        <div id="final-site-content"></div>
+
+        <div id="paywall-overlay" style="position: absolute; top: 80vh; left: 0; width: 100%; height: 1000px; background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.9) 10%, white 30%); display: flex; flex-direction: column; align-items: center; padding-top: 100px; pointer-events: auto;">
+            
+            <div style="background: #111; color: white; padding: 40px; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.4); text-align: center; max-width: 400px; border: 1px solid #333;">
+                <div style="font-size: 3rem; margin-bottom: 15px;">🔒</div>
+                <h3 style="margin: 0; color: white;">Débloquer le site complet</h3>
+                <p style="color: #aaa; font-size: 0.9rem; margin: 15px 0;">Ce design a été généré spécifiquement pour vous. Obtenez le code et l'hébergement maintenant.</p>
+                <a href="commande.html" style="display: inline-block; background: #a855f7; color: white; text-decoration: none; padding: 12px 30px; border-radius: 50px; font-weight: bold;">
+                    Commander (150€)
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+    /* --- PARTIE 1 : CONFIGURATION --- */
+    let tapCount = 0;
+    let tapTimer;
+    
+    // Code Konami pour PC (Haut, Haut, Bas, Bas, Gauche, Droite, Gauche, Droite, B, A)
+    const secretCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+    let currentSequence = [];
+
+    /* --- PARTIE 2 : DÉTECTION MOBILE (7 Taps n'importe où) --- */
+    document.addEventListener('click', () => {
+        tapCount++;
+        
+        // Si on arrête de cliquer pendant 0.5 seconde, on remet le compteur à zéro
+        clearTimeout(tapTimer);
+        tapTimer = setTimeout(() => {
+            tapCount = 0; 
+        }, 500);
+
+        // BINGO : 7 clics rapides
+        if (tapCount === 7) {
+            launchMatrix();
+            tapCount = 0; // Reset
+            if (navigator.vibrate) navigator.vibrate(200); // Petite vibration
+        }
+    });
+
+    /* --- PARTIE 3 : DÉTECTION PC (Clavier) --- */
+    window.addEventListener('keydown', (e) => {
+        currentSequence.push(e.key);
+        currentSequence.splice(-secretCode.length - 1, currentSequence.length - secretCode.length);
+        if (currentSequence.join('') === secretCode.join('')) {
+            launchMatrix();
+            currentSequence = [];
+        }
+    });
+
+    /* --- PARTIE 4 : L'ANIMATION MATRIX --- */
+    function launchMatrix() {
+        const canvas = document.createElement('canvas');
+        canvas.style.position = 'fixed';
+        canvas.style.top = '0';
+        canvas.style.left = '0';
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
+        canvas.style.zIndex = '99999'; // Très haut pour passer au dessus de tout
+        canvas.style.background = 'black';
+        document.body.appendChild(canvas);
+
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function draw() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#0F0"; 
+            ctx.font = fontSize + "px monospace";
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+            requestAnimationFrame(draw);
+        }
+        draw();
+
+        // Cliquer pour fermer
+        canvas.addEventListener('click', () => {
+            document.body.removeChild(canvas);
+        });
+    }
+</script>
+</body>
+</html>

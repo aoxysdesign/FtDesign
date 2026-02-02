@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditions Générales de Vente et d'Utilisation - WebStarter Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* --- NOUVEAU STYLE SOMBRE & VIOLET --- */
+        :root {
+            --bg-dark: #0a0a0c;       /* Fond très sombre */
+            --container-bg: #1a1a1a;  /* Fond du conteneur */
+            --text-light: #e2e8f0;    /* Texte clair */
+            --accent-violet: #8b5cf6; /* Violet vibrant */
+            --violet-glow: 0 0 40px rgba(139, 92, 246, 0.25); /* Lueur violette */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--text-light);
+            background-color: var(--bg-dark); /* Fond sombre */
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        /* Le bloc principal avec les "côtés violets" lumineux */
+        .container {
+            background: var(--container-bg);
+            padding: 50px;
+            border-radius: 16px;
+            max-width: 900px;
+            margin: 0 auto;
+            /* C'est ici que se fait l'effet "côtés violets" */
+            box-shadow: var(--violet-glow);
+            border: 1px solid rgba(139, 92, 246, 0.1);
+        }
+
+        h1 {
+            color: #ffffff;
+            border-bottom: 3px solid var(--accent-violet);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+            font-weight: 600;
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            color: var(--accent-violet); /* Titres en violet */
+            margin-top: 50px;
+            font-size: 1.5rem;
+        }
+
+        p, li {
+            margin-bottom: 20px;
+            color: #c4b5fd; /* Un blanc légèrement violet pour le texte */
+        }
+        
+        strong { color: white; }
+
+        ul { margin-left: 20px; }
+        li { margin-bottom: 10px; }
+
+        /* Bouton retour style "Tech" */
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 30px;
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 12px 25px;
+            border-radius: 50px;
+            transition: 0.3s;
+            background: rgba(255,255,255,0.05);
+        }
+        .back-btn:hover {
+            background: var(--accent-violet);
+            color: white;
+            border-color: var(--accent-violet);
+            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Boite d'alerte (Rétractation) adaptée au sombre */
+        .alert-box {
+            background-color: #2a1c0a; /* Fond orange sombre */
+            border-left: 5px solid #ff9800; /* Bordure orange vif */
+            padding: 25px;
+            margin: 40px 0;
+            border-radius: 8px;
+            color: #ffd180; /* Texte orange clair */
+        }
+        .alert-box strong { color: #ffab40; }
+        
+        /* Liens dans le texte */
+        a { color: var(--accent-violet); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-btn">← Retour au site</a>
+
+    <div class="container">
+        <h1>Conditions Générales de Vente et d'Utilisation (CGV/CGU)</h1>
+        <p><em>En vigueur au 15/01/2026</em></p>
+
+        <h2>Article 1 : Champs d'application et modification des CGV</h2>
+        <p>Les présentes conditions générales de vente (ci-après "CGV") s'appliquent de façon exclusive entre toute personne visitant ou effectuant un achat via le site <strong>https://ftdesign-agency.netlify.app</strong> (ci-après "le Site") et l'éditeur du Site.</p>
+        <p>L'éditeur est : <strong>FtDesign</strong>, domicilié au <strong>14 Boulevard de la Pologne</strong>, contact email : <strong>laissoukilyan@gmail.com</strong>. <br>SIRET :99992066300013</p>
+        <p>Nous nous réservons le droit de modifier les CGV à tout moment. Les conditions applicables sont celles en vigueur à la date de la commande par l'acheteur.</p>
+
+        <h2>Article 2 : Produits et Services</h2>
+        <p>Le Site propose à la vente des produits numériques téléchargeables (templates de sites web, codes sources, graphismes). Les caractéristiques essentielles des produits sont présentées sur la page de vente.</p>
+        <p>Le client reconnaît avoir pris connaissance de ces caractéristiques (notamment les pré-requis techniques comme l'utilisation d'un éditeur de code) avant de passer commande.</p>
+
+        <h2>Article 3 : Prix</h2>
+        <p>Les prix figurant sur le site sont indiqués en Euros (€). L'éditeur se réserve le droit de modifier ses prix à tout moment, étant toutefois entendu que le prix figurant au catalogue le jour de la commande sera le seul applicable à l'acheteur.</p>
+        <p>TVA non applicable, art. 293 B du CGI.</p>
+
+        <h2>Article 4 : Commande et Paiement</h2>
+        <p>La commande est validée une fois le paiement intégralement reçu. Le paiement s'effectue par carte bancaire via le processeur de paiement sécurisé <strong>Stripe</strong>. Les informations bancaires du client ne transitent jamais par nos serveurs.</p>
+
+        <h2>Article 5 : Livraison</h2>
+        <p>S'agissant de produits numériques, la livraison est immatérielle et immédiate. Après validation du paiement, le client est redirigé vers une page de téléchargement ou reçoit un email contenant le lien pour télécharger les fichiers (format ZIP).</p>
+
+        <h2>Article 6 : Renoncement au droit de rétractation</h2>
+        <div class="alert-box">
+            Conformément à l'article L221-28 du Code de la consommation concernant la fourniture de contenu numérique non fourni sur un support matériel, <strong>le droit de rétractation ne peut être exercé</strong> dès lors que le téléchargement a commencé ou que le lien d'accès a été délivré.
+            <br><br>
+            En validant sa commande, le client accepte expressément l'exécution immédiate du contrat et renonce à son droit de rétractation. Aucun remboursement ne sera effectué une fois le produit téléchargé, sauf en cas de défaut technique avéré du fichier.
+        </div>
+
+        <h2>Article 7 : Propriété Intellectuelle et Licence d'Utilisation</h2>
+        <p>L'achat d'un produit sur le Site ne transfère pas la propriété intellectuelle du code, mais confère une <strong>licence d'utilisation</strong> non exclusive :</p>
+        <ul>
+            <li>✅ <strong>Autorisé :</strong> Vous pouvez utiliser les templates pour vos projets personnels ou pour créer des sites pour vos clients finaux.</li>
+            <li>✅ <strong>Autorisé :</strong> Vous pouvez modifier le code à votre guise.</li>
+            <li>❌ <strong>Interdit :</strong> Vous ne pouvez pas revendre, redistribuer ou offrir gratuitement les fichiers sources "bruts" (le pack de templates lui-même) sur une autre plateforme.</li>
+        </ul>
+
+        <h2>Article 8 : Responsabilité</h2>
+        <p>L'éditeur s'engage à fournir des fichiers fonctionnels et exempts de virus. Toutefois, l'éditeur ne saurait être tenu responsable des problèmes techniques indépendants de son service, tels que des problèmes d'hébergement, de compatibilité navigateur spécifique ou de mauvaise manipulation du code par le client.</p>
+
+        <h2>Article 9 : Protection des données personnelles</h2>
+        <p>Les informations recueillies (email pour la livraison) sont nécessaires pour le traitement de la commande. Elles ne sont ni vendues ni communiquées à des tiers, à l'exception des prestataires techniques (Stripe) nécessaires à l'exécution de la commande.</p>
+
+        <h2>Article 10 : Droit applicable</h2>
+        <p>Les présentes CGV sont soumises à la loi française. En cas de litige, une solution amiable sera recherchée avant toute action judiciaire.</p>
+    </div>
+
+</body>
+</html>
